@@ -16,7 +16,7 @@ public class MonsterAttack : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        MonsterAnimator = transform.GetComponent<Animator>();
+        MonsterAnimator = transform.GetChild(0).GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -34,7 +34,12 @@ public class MonsterAttack : MonoBehaviour
         if (distance <= AttackRange)
         {
             MonsterAnimator.SetTrigger("Attack");
+            navi.speed = 0;
+
         }
+        else
+            navi.speed = 3.5f;
+
     }
 
     float PlayerDistance()
