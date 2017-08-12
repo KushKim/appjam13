@@ -63,7 +63,9 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
         Degree = Mathf.Atan2(NowVector.y - StartVector.y, NowVector.x - StartVector.x) * Mathf.Rad2Deg + 180;
 
         Player.transform.rotation = Quaternion.Euler(0, -Degree, 0);
+
     }
+
     public virtual void OnPointerDown(PointerEventData ped)
     {
         StartVector = Vector3.zero;
