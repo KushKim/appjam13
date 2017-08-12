@@ -44,15 +44,13 @@ public class MenuCanvas : MonoBehaviour {
 
     IEnumerator FadeIn()
     {
-        while(Recttransform.position.y < 190 || Chapters[0].color.a < 1)
+        while(Chapters[0].color.a < 1)
         {
             for (int i = 0; i < 3; i++)
             {
                 Chapters[i].color = new Color(Chapters[i].color.r, Chapters[i].color.g, Chapters[i].color.b, Chapters[i].color.a + 0.01f);
                 ChaptersText[i].color = new Color(ChaptersText[i].color.r, ChaptersText[i].color.g, ChaptersText[i].color.b, ChaptersText[i].color.a + 0.01f);
             }
-            if (Recttransform.position.y < 190)
-                Recttransform.position = new Vector2(Recttransform.position.x, Recttransform.position.y + 5);
             yield return new WaitForSeconds(0.02f);
         }
     }
