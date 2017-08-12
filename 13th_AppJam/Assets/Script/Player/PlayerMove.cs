@@ -26,6 +26,12 @@ public class PlayerMove : MonoBehaviour
 
     public void Move(Vector3 direction, Transform playerTrans, Rigidbody playerRigid)
     {
-        playerRigid.MovePosition(playerTrans.position + (direction * moveSpeed * Time.deltaTime));
+        float positionY = playerTrans.position.y;
+
+        Vector3 movement = playerTrans.position + (direction * moveSpeed * Time.deltaTime);
+
+        movement = new Vector3(movement.x, positionY, movement.z);
+
+        playerRigid.MovePosition(movement);
     }
 }
