@@ -32,14 +32,6 @@ public class MonsterHit : MonoBehaviour {
         Hp = monsterSheet.m_data[0].hp;
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.X))
-        {
-            Hit();
-        }
-    }
-
     void Hit()
     {
         MonsterAnimator.SetTrigger("Hit");
