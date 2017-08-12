@@ -2,6 +2,7 @@
 
 public class PlayerMove : MonoBehaviour
 {
+    [SerializeField]
     private float moveSpeed;
     public PlayerStatus playerStatus;
 
@@ -14,15 +15,15 @@ public class PlayerMove : MonoBehaviour
     {
         playerContainer = InGameManager.Instance._PlayerDataContainer;
 
-        characterSheet = InGameManager.Instance.CharacterSheet_readonly;
+        //characterSheet = InGameManager.Instance.CharacterSheet_readonly;
 
-        for (int i = 0; i < characterSheet.m_data.Count; i++)
-        {
-            if (characterSheet.m_data[i].name == playerContainer.CharacterName)
-                characterData = characterSheet.m_data[i];
-        }
+        //for (int i = 0; i < characterSheet.m_data.Count; i++)
+        //{
+        //    if (characterSheet.m_data[i].name == playerContainer.CharacterName)
+        //        characterData = characterSheet.m_data[i];
+        //}
 
-        moveSpeed = characterData.moveSpeed;
+        //moveSpeed = characterData.moveSpeed;
     }
 
     public void Move(Vector3 direction, Transform playerTrans, Rigidbody playerRigid)

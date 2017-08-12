@@ -35,6 +35,7 @@ public class WaveManager : MonoBehaviour {
         for (int i = 0; i < spawnMonsters; i++)
         {
             GameObject obj = Instantiate(Enemy);
+            obj.SetActive(true);
             obj.transform.position = SpawnPoints[i % SpawnPoints.Count].position;
             yield return new WaitForSeconds(0.5f);
 

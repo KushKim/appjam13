@@ -10,8 +10,8 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField]
     private Text starText;
 
-    private float hp;
-    private int star;
+    private float hp = 100f;
+    private int star = 0;
  
     private PlayerDataContainer playerContainer;
 
@@ -45,17 +45,17 @@ public class PlayerStatus : MonoBehaviour
 
     private void Awake()
     {
-        playerContainer = InGameManager.Instance._PlayerDataContainer;
+        //playerContainer = InGameManager.Instance._PlayerDataContainer;
 
-        characterSheet = InGameManager.Instance.CharacterSheet_readonly;
+        //characterSheet = InGameManager.Instance.CharacterSheet_readonly;
 
-        for(int i = 0; i < characterSheet.m_data.Count; i++)
-        {
-            if(characterSheet.m_data[i].name == playerContainer.CharacterName)
-                characterData = characterSheet.m_data[i];
-        }
+        //for(int i = 0; i < characterSheet.m_data.Count; i++)
+        //{
+        //    if(characterSheet.m_data[i].name == playerContainer.CharacterName)
+        //        characterData = characterSheet.m_data[i];
+        //}
 
-        Hp = characterData.hp;
+        Hp = 100f; // 나중에 고치자
 
         star = 0;
     }

@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour {
 
+    [SerializeField]
+    private PlayerBehaviour playerBehaviour;
+
     public GameObject Attack;
     public GameObject WeakponChanger;
 
@@ -12,16 +15,6 @@ public class Weapon : MonoBehaviour {
     public float time;
 
     public float AttackDelayTime;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public void ButtonClicked(Transform target)
     {
@@ -36,6 +29,8 @@ public class Weapon : MonoBehaviour {
 
             target.GetChild(0).GetComponent<Image>().fillAmount = 1;
             StartCoroutine(Delay(target.GetChild(0).GetComponent<Image>()));
+
+            playerBehaviour.Attack();
         }
     }
 

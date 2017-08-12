@@ -8,7 +8,6 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
     private bool DisDrag;
 
 
-    public GameObject Player;
     public Image PedImg;
     public Image JoystickImg;
 
@@ -21,8 +20,8 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
     private Vector3 NowVector;
     [SerializeField]
     private Vector3 Direction;
-    [SerializeField]
-    private PlayerBehaviour playerBehaviour;
+
+    private PlayerDataContainer playerDataContainer;
 
     private float Degree;
 
@@ -32,6 +31,7 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
     private void Awake()
     {
         //playerManager = InGameManager.Instance.PlayerDataContainer_readonly._PlayerManager;
+        playerDataContainer = InGameManager.Instance._PlayerDataContainer;
     }
 
     public virtual void OnDrag(PointerEventData ped)
@@ -62,7 +62,7 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
 
         Degree = Mathf.Atan2(NowVector.y - StartVector.y, NowVector.x - StartVector.x) * Mathf.Rad2Deg + 180;
 
-        Player.transform.rotation = Quaternion.Euler(0, -Degree, 0);
+        playerDataContainer._Transform.rotation = Quaternion.Euler(0, -Degree, 0);
 
     }
 
@@ -70,6 +70,7 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
     {
         StartVector = Vector3.zero;
         OnDrag(ped);
+        playerDataContainer._Model.GetComponent<PlayerBehaviour>().PlayerAni.ChangeAni(PlayerState.Run);
     }
 
     public virtual void OnPointerUp(PointerEventData ped)
@@ -79,6 +80,7 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
         JoystickImg.rectTransform.anchoredPosition = Vector3.zero;
 
         //playerManager.Idle();
+        playerDataContainer._Model.GetComponent<PlayerBehaviour>().PlayerAni.ChangeAni(PlayerState.Idle);
     }
 
     public void InitPos()
@@ -92,6 +94,9 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
     private void FixedUpdate()
     {
         if (DisDrag)
-            playerBehaviour.Move(Direction);
+        {
+            playerDataContainer._Model.GetComponent<PlayerBehaviour>().Move(Direction); // 하드코딩이니까 수정하자
+
+        }
     }
 }

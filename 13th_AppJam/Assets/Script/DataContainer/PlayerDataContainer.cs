@@ -8,13 +8,22 @@ public class PlayerDataContainer : MonoBehaviour
     [SerializeField]
     private Transform playerGroup;
 
+    [SerializeField]
+    private GameObject warriorObject;
+
+    [SerializeField]
+    private GameObject magicianObject;
+
+
+    private bool isWarrior;
+
     private CharacterSheet characterSheet;
 
     private void Awake()
     {
-        characterSheet = InGameManager.Instance.CharacterSheet_readonly;
+        isWarrior = false;
 
-        ChangeCharacter(firstPlayerName);
+        ChangeCharacter();
     }
 
     public GameObject _Model { set; get; }
@@ -23,20 +32,27 @@ public class PlayerDataContainer : MonoBehaviour
 
     public string CharacterName { get; set; }
 
-    public void ChangeCharacter(string characterName)
+    public void ChangeCharacter()
     {
-        CharacterName = characterName;
-
         GameObject character = new GameObject();
 
-        for (int i = 0; i < characterSheet.m_data.Count; i++)
+        if (isWarrior)
         {
-            if(characterSheet.m_data[i].name == characterName)
-                character = characterSheet.m_data[i].prefab;
+            character = warriorObject;
+            warriorObject.SetActive(true);
+            magicianObject.SetActive(false);
+        }
+        else
+        {
+            character = magicianObject;
+            warriorObject.SetActive(false);
+            magicianObject.SetActive(true);
         }
 
         _Model = character.gameObject;
         _Transform = character.transform;
         _Rigidbody = character.GetComponent<Rigidbody>();
+
+        isWarrior = !isWarrior;
     }
 }

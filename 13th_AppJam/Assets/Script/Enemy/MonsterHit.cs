@@ -32,11 +32,11 @@ public class MonsterHit : MonoBehaviour {
         Hp = monsterSheet.m_data[0].hp;
     }
 
-    void Hit()
+    public void Hit(int damage)
     {
         MonsterAnimator.SetTrigger("Hit");
 
-        Hp -= PlayerDamage();
+        Hp -= damage;
 
         if(Hp <= 0)
         {
@@ -55,15 +55,15 @@ public class MonsterHit : MonoBehaviour {
         }
     }
 
-    float PlayerDamage()
-    {
-        for (int i = 0; i < weaponSheet.m_data.Count; i++) 
-        {
-            if(characterData.WeaponName == weaponSheet.m_data[i].name)
-            {
-                return weaponSheet.m_data[i].demage;
-            }
-        }
-        return 0;
-    }
+    //float PlayerDamage()
+    //{
+    //    for (int i = 0; i < weaponSheet.m_data.Count; i++) 
+    //    {
+    //        if(characterData.WeaponName == weaponSheet.m_data[i].name)
+    //        {
+    //            return weaponSheet.m_data[i].demage;
+    //        }
+    //    }
+    //    return 0;
+    //}
 }
