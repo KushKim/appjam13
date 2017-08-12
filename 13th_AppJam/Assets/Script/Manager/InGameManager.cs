@@ -17,10 +17,21 @@ public class InGameManager : MonoBehaviour
     [SerializeField]
     private CharacterSheet characterSheet;
 
+    [SerializeField]
+    private PlayerDataContainer playerDataContainer;
+
     private void Awake()
     {
         instance = this;
+
+        _PlayerDataContainer = playerDataContainer;
     }
+
+    #region DataContainer
+
+    public PlayerDataContainer _PlayerDataContainer { set; get; }
+
+    #endregion
 
     #region Sheet
 

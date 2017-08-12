@@ -10,6 +10,8 @@ public class CharacterData
 {
     public string name;
 
+    public GameObject prefab;
+
     [Space(15f)]
 
     public int hp;
