@@ -19,6 +19,8 @@ public class SceneChanger : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
+
         DontDestroyOnLoad(this);
     }
 
