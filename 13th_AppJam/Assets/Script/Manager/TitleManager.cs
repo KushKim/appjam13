@@ -5,6 +5,7 @@ using UnityEngine;
 public class TitleManager : MonoBehaviour
 {
     private bool isCanNext;
+    public MenuCanvas menuCanvas;
 
     private void Awake()
     {
@@ -14,7 +15,7 @@ public class TitleManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && isCanNext)
-            SceneChanger.Instance.ChangeScene(SceneType.Menu);
+            menuCanvas.MenuActive();
     }
 
     public void Complete()

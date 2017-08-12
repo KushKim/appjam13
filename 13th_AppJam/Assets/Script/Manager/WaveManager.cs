@@ -20,28 +20,36 @@ public class WaveManager : MonoBehaviour {
 
     public List<Transform> SpawnPoints;
 
+    public GameObject Monsters;
+
+    public int WaveNum;
+
     private void Start()
     {
-        //for (int i = 0; i < SpawnPoints.Count; i++)
-        //{
-        //    SpawnPoints[i].y = 0;
-        //}
-
-        //SpawnPoints = new List<Transform>();
+        StartCoroutine(WaveTimeer());
     }
 
     IEnumerator Wave(int spawnMonsters)
     {
         for (int i = 0; i < spawnMonsters; i++)
         {
-            GameObject obj = Instantiate(Enemy);
-            obj.SetActive(true);
+            GameObject obj = Instantiate(Enemy, Monsters.transform);
             obj.transform.position = SpawnPoints[i % SpawnPoints.Count].position;
             yield return new WaitForSeconds(0.5f);
 
         }
     }
 
+
+    IEnumerator WaveTimeer()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            StartCoroutine(Wave(6 + i * 2));
+            WaveNum += 1;
+            yield return new WaitForSeconds(i * 15);
+        }
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.X))
@@ -53,6 +61,5 @@ public class WaveManager : MonoBehaviour {
     public void ActiveWave(int spawnMonsters)
     {
         StartCoroutine(Wave(spawnMonsters));
-
-    }
+    }   
 }
