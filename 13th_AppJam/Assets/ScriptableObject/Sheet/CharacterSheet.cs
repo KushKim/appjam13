@@ -17,14 +17,16 @@ public class CharacterData
     public int hp;
     public float moveSpeed;
 
-    public Attack attack;
+    public string WeaponName;
 
-    [Serializable]
-    public struct Attack
-    {
-        public float demage;
-        public float delay;
-    }
+    //public Attack attack;
+
+    //[Serializable]
+    //public struct Attack
+    //{
+    //    public float demage;
+    //    public float delay;
+    //}
 }
 
 public class CharacterSheet : Sheet<CharacterData>
