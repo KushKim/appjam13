@@ -5,14 +5,14 @@ using System.Collections;
 
 public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
 {
-
-    private float Degrees;
     private bool DisDrag;
 
 
-    private GameObject Player;
+    public GameObject Player;
     public Image PedImg;
     public Image JoystickImg;
+
+    private Rigidbody PlayerRigid;
 
     private Vector3 InputVector;
     private Vector3 StartVector;
@@ -21,6 +21,9 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
     private Vector3 NowVector;
     [SerializeField]
     private Vector3 Direction;
+
+    private float Degree;
+
 
     //private PlayerManager playerManager;
 
@@ -55,7 +58,9 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
         NowVector = JoystickImg.transform.localPosition;
         Direction = (NowVector - StartVector).normalized;
 
-        Direction.y = 0;
+        Degree = Mathf.Atan2(NowVector.y - StartVector.y, NowVector.x - StartVector.x) * Mathf.Rad2Deg + 180;
+
+        Player.transform.rotation = Quaternion.Euler(0, -Degree, 0);
     }
     public virtual void OnPointerDown(PointerEventData ped)
     {
@@ -83,6 +88,6 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
     private void FixedUpdate()
     {
         //if (DisDrag)
-        //    playerManager.Move(Direction);
+        //    PlayerRigid.MovePosition(new Vector3())
     }
 }
