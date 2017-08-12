@@ -8,7 +8,7 @@ public class PlayerMove : MonoBehaviour
 
     private CharacterData characterData;
     private CharacterSheet characterSheet;
-
+ 
     private void Awake()
     {
         playerContainer = InGameManager.Instance._PlayerDataContainer;
@@ -24,8 +24,8 @@ public class PlayerMove : MonoBehaviour
         moveSpeed = characterData.moveSpeed;
     }
 
-    public void Move(Vector3 direction)
+    public void Move(Vector3 direction, Transform playerTrans, Rigidbody playerRigid)
     {
-        playerContainer._Rigidbody.MovePosition(playerContainer._Transform.position + (direction * moveSpeed * Time.deltaTime));
+        playerRigid.MovePosition(playerTrans.position + (direction * moveSpeed * Time.deltaTime));
     }
 }
