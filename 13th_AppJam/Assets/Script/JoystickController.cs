@@ -21,6 +21,8 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
     private Vector3 NowVector;
     [SerializeField]
     private Vector3 Direction;
+    [SerializeField]
+    private PlayerBehaviour playerBehaviour;
 
     private float Degree;
 
@@ -87,7 +89,7 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
 
     private void FixedUpdate()
     {
-        //if (DisDrag)
-        //    PlayerRigid.MovePosition(new Vector3())
+        if (DisDrag)
+            playerBehaviour.Move(Direction);
     }
 }
