@@ -17,5 +17,5 @@ MonoBehaviour:
     hp: 0
     moveSpeed: 0
     attack:
-      demage: 0
+      demage: 5
       delay: 0
