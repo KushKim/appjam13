@@ -11,4 +11,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: add6f9dec6cbfc14d979dce8b37c70e3, type: 3}
   m_Name: WeaponSheet
   m_EditorClassIdentifier: 
-  m_data: []
+  m_data:
+  - name: 
+    demage: 0
+    delay: 0
+  - name: 
+    demage: 0
+    delay: 0
+  - name: 
+    demage: 0
+    delay: 0
+  - name: 
+    demage: 0
+    delay: 0
