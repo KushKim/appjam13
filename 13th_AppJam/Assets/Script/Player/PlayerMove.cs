@@ -3,6 +3,7 @@
 public class PlayerMove : MonoBehaviour
 {
     private float moveSpeed;
+    public PlayerStatus playerStatus;
 
     private PlayerDataContainer playerContainer;
 
@@ -29,5 +30,11 @@ public class PlayerMove : MonoBehaviour
         Vector3 movement = new Vector3(direction.x, 0, direction.y);
 
         playerRigid.MovePosition(playerTrans.position + movement * moveSpeed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(other.gameObject);
+        playerStatus.Star += 1;
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class MonsterHit : MonoBehaviour {
 
     public GameObject Ragdoll;
+    public GameObject Star;
 
     private Animator MonsterAnimator;
     private MonsterSheet monsterSheet;
@@ -15,12 +16,12 @@ public class MonsterHit : MonoBehaviour {
     private WeaponSheet weaponSheet;
 
     
-    private float Hp;
+    public float Hp;
 
     // Use this for initialization
     void Start()
     {
-        MonsterAnimator = transform.GetComponent<Animator>();
+        MonsterAnimator = transform.GetChild(0).transform.GetComponent<Animator>();
         monsterSheet = InGameManager.Instance.MonsterSheet_readonly;
         characterSheet = InGameManager.Instance.CharacterSheet_readonly;
         characterData = characterSheet.m_data[0];
@@ -37,12 +38,18 @@ public class MonsterHit : MonoBehaviour {
 
         Hp -= PlayerDamage();
 
-        if(Hp < 0)
+        if(Hp <= 0)
         {
             GameObject obj = Instantiate(Ragdoll);
 
-            obj.transform.position = transform.position;
+            obj.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
             obj.transform.rotation = transform.rotation;
+
+            if(Random.Range(0,5) == 0)
+            {
+                GameObject starobj = Instantiate(Star);
+                starobj.transform.position = transform.position;
+            }
 
             Destroy(gameObject);
         }

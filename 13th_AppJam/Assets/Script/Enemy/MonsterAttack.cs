@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class MonsterAttack : MonoBehaviour
 {
-    public GameObject Player;
-
     public NavMeshAgent navi;
 
     public PlayerStatus playerStatus;
@@ -17,17 +15,21 @@ public class MonsterAttack : MonoBehaviour
 
     private bool canAttack;
 
+    private PlayerDataContainer playerdataContainer;
+
     // Use this for initialization
     void Start()
     {
         MonsterAnimator = transform.GetChild(0).GetComponent<Animator>();
         canAttack = true;
+
+        playerdataContainer = InGameManager.Instance._PlayerDataContainer;
     }
 
     // Update is called once per frame
     void Update()
     {
-        navi.SetDestination(Player.transform.position);
+        navi.SetDestination(playerdataContainer._Transform.position);
 
         AttackPlayer();
     }
@@ -51,7 +53,7 @@ public class MonsterAttack : MonoBehaviour
 
     float PlayerDistance()
     {
-        return Vector3.Distance(Player.transform.position, transform.position);
+        return Vector3.Distance(playerdataContainer._Transform.position, transform.position);
     }
 
     void AttackCheck()
