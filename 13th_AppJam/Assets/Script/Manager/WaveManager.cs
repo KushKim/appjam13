@@ -18,14 +18,16 @@ public class WaveManager : MonoBehaviour {
 
     public GameObject Enemy;
 
-    public Vector3[] SpawnPoints;
+    public List<Transform> SpawnPoints;
 
     private void Start()
     {
-        for (int i = 0; i < SpawnPoints.Length; i++)
-        {
-            SpawnPoints[i].y = 0;
-        }
+        //for (int i = 0; i < SpawnPoints.Count; i++)
+        //{
+        //    SpawnPoints[i].y = 0;
+        //}
+
+        //SpawnPoints = new List<Transform>();
     }
 
     IEnumerator Wave(int spawnMonsters)
@@ -33,7 +35,7 @@ public class WaveManager : MonoBehaviour {
         for (int i = 0; i < spawnMonsters; i++)
         {
             GameObject obj = Instantiate(Enemy);
-            obj.transform.position = SpawnPoints[i % SpawnPoints.Length];
+            obj.transform.position = SpawnPoints[i % SpawnPoints.Count].position;
             yield return new WaitForSeconds(0.5f);
 
         }
