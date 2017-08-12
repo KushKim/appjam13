@@ -20,6 +20,14 @@ public class WaveManager : MonoBehaviour {
 
     public Vector3[] SpawnPoints;
 
+    private void Start()
+    {
+        for (int i = 0; i < SpawnPoints.Length; i++)
+        {
+            SpawnPoints[i].y = 0;
+        }
+    }
+
     IEnumerator Wave(int spawnMonsters)
     {
         for (int i = 0; i < spawnMonsters; i++)
@@ -42,5 +50,6 @@ public class WaveManager : MonoBehaviour {
     public void ActiveWave(int spawnMonsters)
     {
         StartCoroutine(Wave(spawnMonsters));
+
     }
 }

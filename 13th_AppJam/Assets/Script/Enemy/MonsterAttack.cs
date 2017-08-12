@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AI;
+using UnityEngine.Audio;
 using UnityEngine;
 
 public class MonsterAttack : MonoBehaviour
@@ -8,6 +9,8 @@ public class MonsterAttack : MonoBehaviour
     public NavMeshAgent navi;
 
     public PlayerStatus playerStatus;
+
+    public AudioSource Sound;
 
     public float AttackRange;
 
@@ -63,6 +66,7 @@ public class MonsterAttack : MonoBehaviour
         if (distance <= AttackRange)
         {
             playerStatus.Hp -= InGameManager.Instance.MonsterSheet_readonly.m_data[0].attack.demage;
+            Sound.Play();
         }
         Invoke("AttackDelay", 1f);
     }
