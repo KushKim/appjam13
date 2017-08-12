@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
     [SerializeField]
     private HpBar hpBar;
+    [SerializeField]
+    private Text starText;
 
     private float hp;
     private int star;
@@ -32,6 +35,7 @@ public class PlayerStatus : MonoBehaviour
         set
         {
             star = value;
+            starText.text = star.ToString();
         }
         get
         {
