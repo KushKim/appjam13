@@ -15,7 +15,7 @@ MonoBehaviour:
   - name: TestCharacter
     prefab: {fileID: 1583778541840614, guid: 25daa178374867e47bca813fd8dc0e07, type: 2}
     hp: 100
-    moveSpeed: 0
+    moveSpeed: 5
     attack:
       demage: 0
       delay: 0
