@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1095,6 +1095,7 @@ GameObject:
   - component: {fileID: 1196535402}
   - component: {fileID: 1196535404}
   - component: {fileID: 1196535403}
+  - component: {fileID: 1196535405}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -1208,6 +1209,23 @@ MonoBehaviour:
   transform: {fileID: 1196535401}
   rigidbody: {fileID: 1196535402}
   playerMove: {fileID: 1196535403}
+--- !u!95 &1196535405
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1196535397}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1201674117
 GameObject:
   m_ObjectHideFlags: 0
@@ -1514,6 +1532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 1196535397}
   navi: {fileID: 1280108055}
+  AttackRange: 0
 --- !u!1001 &1349053540
 Prefab:
   m_ObjectHideFlags: 0
@@ -1791,8 +1810,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1463168962}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.83, z: 0.61}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalPosition: {x: -0.636, y: 0.8, z: 0}
+  m_LocalScale: {x: 1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 1196535401}
   m_RootOrder: 0
@@ -1940,6 +1959,7 @@ GameObject:
   - component: {fileID: 1597811987}
   - component: {fileID: 1597811989}
   - component: {fileID: 1597811988}
+  - component: {fileID: 1597811990}
   m_Layer: 5
   m_Name: Hp_Bar
   m_TagString: Untagged
@@ -1998,6 +2018,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1597811986}
+--- !u!114 &1597811990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1597811986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a45640185dfda7649a2c1130b52d341f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1687695558
 GameObject:
   m_ObjectHideFlags: 0
