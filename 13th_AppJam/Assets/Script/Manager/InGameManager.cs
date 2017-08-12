@@ -20,6 +20,13 @@ public class InGameManager : MonoBehaviour
     [SerializeField]
     private PlayerDataContainer playerDataContainer;
 
+    [SerializeField]
+    private MonsterSheet monsterSheet;
+
+    [SerializeField]
+    private WeaponSheet weaponSheet;
+
+
     private void Awake()
     {
         instance = this;
@@ -36,6 +43,8 @@ public class InGameManager : MonoBehaviour
     #region Sheet
 
     public CharacterSheet CharacterSheet_readonly { get { return characterSheet; } }
+    public MonsterSheet MonsterSheet_readonly { get { return monsterSheet; } }
+    public WeaponSheet WeaponSheet_readonly { get { return weaponSheet; } }
 
     #endregion
 }
