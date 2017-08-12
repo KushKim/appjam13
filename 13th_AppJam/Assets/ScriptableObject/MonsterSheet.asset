@@ -9,6 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a65960223083b59438d905085b7be607, type: 3}
-  m_Name: New MonsterSheet
+  m_Name: MonsterSheet
   m_EditorClassIdentifier: 
-  m_data: []
+  m_data:
+  - name: Monster
+    prefab: {fileID: 1988770337349038, guid: 3c7c5f13d6b5356449e573746610836d, type: 2}
+    hp: 0
+    moveSpeed: 0
+    attack:
+      demage: 0
+      delay: 0
