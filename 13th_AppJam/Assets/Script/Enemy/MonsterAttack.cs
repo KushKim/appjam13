@@ -9,14 +9,19 @@ public class MonsterAttack : MonoBehaviour
 
     public NavMeshAgent navi;
 
+    public PlayerStatus playerStatus;
+
     public float AttackRange;
 
     private Animator MonsterAnimator;
+
+    private bool canAttack;
 
     // Use this for initialization
     void Start()
     {
         MonsterAnimator = transform.GetChild(0).GetComponent<Animator>();
+        canAttack = true;
     }
 
     // Update is called once per frame
@@ -31,10 +36,12 @@ public class MonsterAttack : MonoBehaviour
     {
         float distance = PlayerDistance();
 
-        if (distance <= AttackRange)
+        if (distance <= AttackRange && canAttack)
         {
             MonsterAnimator.SetTrigger("Attack");
             navi.speed = 0;
+            Invoke("AttackCheck", 1f);
+            canAttack = false;
 
         }
         else
@@ -45,5 +52,21 @@ public class MonsterAttack : MonoBehaviour
     float PlayerDistance()
     {
         return Vector3.Distance(Player.transform.position, transform.position);
+    }
+
+    void AttackCheck()
+    {
+        float distance = PlayerDistance();
+
+        if (distance <= AttackRange)
+        {
+            playerStatus.Hp -= InGameManager.Instance.MonsterSheet_readonly.m_data[0].attack.demage;
+        }
+        Invoke("AttackDelay", 1f);
+    }
+
+    void AttackDelay()
+    {
+        canAttack = true;
     }
 }

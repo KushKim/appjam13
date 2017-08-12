@@ -17,8 +17,8 @@ public class HpBar : MonoBehaviour
         PlayerHp = characterSheet.m_data[0].hp;
     }
 
-    void Update()
+    public void UpdateHpBar(float hp)
     {
-        image.fillAmount = PlayerHp / 100f;
+        image.fillAmount = hp / 100f;
     }
 }

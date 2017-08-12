@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MonsterHit : MonoBehaviour {
 
+    public GameObject Ragdoll;
+
     private Animator MonsterAnimator;
     private MonsterSheet monsterSheet;
 
@@ -12,8 +14,9 @@ public class MonsterHit : MonoBehaviour {
 
     private WeaponSheet weaponSheet;
 
-
+    
     private float Hp;
+
     // Use this for initialization
     void Start()
     {
@@ -36,7 +39,12 @@ public class MonsterHit : MonoBehaviour {
 
         if(Hp < 0)
         {
-            MonsterAnimator.SetTrigger("Dead");
+            GameObject obj = Instantiate(Ragdoll);
+
+            obj.transform.position = transform.position;
+            obj.transform.rotation = transform.rotation;
+
+            Destroy(gameObject);
         }
     }
 
