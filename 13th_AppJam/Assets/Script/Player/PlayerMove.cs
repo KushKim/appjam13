@@ -35,7 +35,10 @@ public class PlayerMove : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(other.gameObject);
-        playerStatus.Star += 1;
+        if (other.CompareTag("star"))
+        {
+            Destroy(other.gameObject);
+            playerStatus.Star += 1;
+        }
     }
 }

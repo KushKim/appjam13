@@ -18,6 +18,9 @@ public class PlayerStatus : MonoBehaviour
     private CharacterSheet characterSheet;
     private CharacterData characterData;
 
+    public GameObject Block;
+    public GameObject ch;
+
     public float Hp
     {
         set
@@ -58,5 +61,16 @@ public class PlayerStatus : MonoBehaviour
         Hp = 100f; // 나중에 고치자
 
         star = 0;
+    }
+
+    public void HitTT()
+    {
+        for (int i = 0; i < 15; i++)
+        {
+            GameObject obj = Instantiate(Block);
+            obj.SetActive(true);
+            obj.transform.position = ch.transform.position;
+            obj.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(-200, 200), Random.Range(100, 200), Random.Range(-200, 200)));
+        }
     }
 }

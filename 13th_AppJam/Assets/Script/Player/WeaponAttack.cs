@@ -9,7 +9,7 @@ public class WeaponAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Monster"))
+        if (other.CompareTag("Monster"))
         {
             other.GetComponent<MonsterHit>().Hit(damage);
         }
