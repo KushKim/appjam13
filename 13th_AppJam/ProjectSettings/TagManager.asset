@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Joystick
   - Monster
+  - star
+  - Weapon
   layers:
   - Default
   - TransparentFX

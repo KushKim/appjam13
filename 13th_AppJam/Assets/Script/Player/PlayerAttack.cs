@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    public AudioSource audio;
+
     [SerializeField]
     private GameObject collObject;
 
@@ -18,6 +20,7 @@ public class PlayerAttack : MonoBehaviour
     public void Attack()
     {
         StartCoroutine(_Attack());
+        audio.Play();
     }
 
     private IEnumerator _Attack()

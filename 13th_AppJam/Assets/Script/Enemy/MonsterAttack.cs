@@ -10,7 +10,7 @@ public class MonsterAttack : MonoBehaviour
 
     public PlayerStatus playerStatus;
 
-    public AudioSource Sound;
+    //public AudioSource Sound;
 
     public float AttackRange;
 
@@ -66,7 +66,8 @@ public class MonsterAttack : MonoBehaviour
         if (distance <= AttackRange)
         {
             playerStatus.Hp -= InGameManager.Instance.MonsterSheet_readonly.m_data[0].attack.demage;
-            Sound.Play();
+            //Sound.Play();
+            playerStatus.HitTT();
         }
         Invoke("AttackDelay", 1f);
     }

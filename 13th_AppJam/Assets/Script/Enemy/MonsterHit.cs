@@ -15,6 +15,8 @@ public class MonsterHit : MonoBehaviour {
 
     private WeaponSheet weaponSheet;
 
+    public PlayerStatus status;
+    public AudioSource audio;
     
     public float Hp;
 
@@ -34,24 +36,35 @@ public class MonsterHit : MonoBehaviour {
 
     public void Hit(int damage)
     {
-        MonsterAnimator.SetTrigger("Hit");
+        //MonsterAnimator.SetTrigger("Hit");
 
         Hp -= damage;
+        //Debug.Log("dsaaaaaaaaaaaasf");
 
-        if(Hp <= 0)
+        if (Hp <= 0)
         {
             GameObject obj = Instantiate(Ragdoll);
 
             obj.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
             obj.transform.rotation = transform.rotation;
 
-            if(Random.Range(0,5) == 0)
+            if(Random.Range(0,1) == 0)
             {
-                GameObject starobj = Instantiate(Star);
-                starobj.transform.position = transform.position;
+                //GameObject starobj = Instantiate(Star);
+                //starobj.transform.position = transform.position;
+                status.Star += 1;
+                audio.Play();
             }
 
             Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Weapon"))
+        {
+            Hit(5);
         }
     }
 

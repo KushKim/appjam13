@@ -11,6 +11,7 @@ public class InterFace : MonoBehaviour {
     public Text StarText;
     public Image Suc;
     public Image Fail;
+    bool check = false;
 
 	// Use this for initialization
 	void Start () {
@@ -25,10 +26,10 @@ public class InterFace : MonoBehaviour {
 
     void Checker()
     {
-        if (WaveManager.Instance.WaveNum == 3 && Monsters.transform.childCount == 0)
+        if (!check && playerStatus.Star >= 26)
             Win();
 
-        if (playerStatus.Hp <= 0)
+        if (!check && playerStatus.Hp <= 0)
             Lose();
     }
 
@@ -37,6 +38,7 @@ public class InterFace : MonoBehaviour {
         SucFail.gameObject.SetActive(true);
         Fail.gameObject.SetActive(false);
         StarText.text = playerStatus.Star.ToString();
+        check = true;
     }
 
     void Lose()
@@ -44,6 +46,8 @@ public class InterFace : MonoBehaviour {
         SucFail.gameObject.SetActive(true);
         Suc.gameObject.SetActive(false);
         StarText.text = playerStatus.Star.ToString();
+        check = true;
+
     }
 
     public void SceneChangerer()

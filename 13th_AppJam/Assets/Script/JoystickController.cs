@@ -25,6 +25,9 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
 
     private float Degree;
 
+    public Transform tran;
+    public Weapon weapon;
+    public PlayerAttack playerAttack;
 
     //private PlayerManager playerManager;
 
@@ -90,13 +93,34 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
         JoystickImg.rectTransform.anchoredPosition = Vector3.zero;
 
     }
-
+    
     private void FixedUpdate()
     {
+        playerDataContainer._Model.GetComponent<PlayerBehaviour>().Move(new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0));
+
+        if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            playerDataContainer._Model.GetComponent<PlayerBehaviour>().PlayerAni.ChangeAni(PlayerState.Run);
+            playerDataContainer._Transform.rotation = Quaternion.Euler(0, -Degree, 0);
+
+            Degree = Mathf.Atan2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal")) * Mathf.Rad2Deg + 180;
+        }
+        else if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+        {
+            playerDataContainer._Model.GetComponent<PlayerBehaviour>().PlayerAni.ChangeAni(PlayerState.Idle);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0))
+        {
+            weapon.AttackButtonClick(tran);
+            playerAttack.Attack();
+        }
+
+
+
         if (DisDrag)
         {
             playerDataContainer._Model.GetComponent<PlayerBehaviour>().Move(Direction); // 하드코딩이니까 수정하자
-
         }
     }
 }
